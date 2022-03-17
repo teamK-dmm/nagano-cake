@@ -1,0 +1,2 @@
+class OderItem < ApplicationRecord
+end
