@@ -8,9 +8,7 @@ class CreateOders < ActiveRecord::Migration[6.1]
       t.string :address
       t.string :postal_code
       t.string :receiver_name
-      t.datetime :created_at, null: false, default: "now"
-      t.datetime :updated_at, null: false, default: "now"
-
+      
       t.timestamps
     end
   end
