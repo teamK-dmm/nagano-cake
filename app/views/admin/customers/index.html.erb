@@ -1,0 +1,33 @@
+  <h2>登録会員一覧</h2>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customer.each do |customer| do %>
+        <tr>
+          <td><%= customer.id %></td>
+          <td><%= link_to admin_customer_path do %>
+              <%= customer.fist_name %>&ensp;<%= customer.last_name %>
+          </td>
+          <td><%= customer.email %></td>
+          <td><% if customer.is_deleted == false %>
+                有効
+              <% else %>
+                退会済み
+              <% end
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class= "text-center"><%= paginate(@customers) %></div>
+
+

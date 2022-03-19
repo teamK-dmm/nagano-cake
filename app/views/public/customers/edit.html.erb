@@ -1,0 +1,23 @@
+  <div class='container'>
+    <h2>登録情報編集</h2>
+    <%= form_with model:@customer, local:true do |f| %>
+
+      <%= f.label :"姓" %>
+      <%= f.text_field :first_name, autofocus: true %>
+      <%= f.label :"名" %>
+      <%= f.text_field :last_name %>
+      <%= f.label :"郵便番号" %>
+      <%= f.text_field :postal_code %>
+      <%= f.label :"住所" %>
+      <%= f.text_field :adress %>
+      <%= f.label :"電話番号" %>
+      <%= f.text_field :phone_number %>
+      <%= f.label :"メールアドレス" %>
+      <%= text_field :email %>
+
+      #これで更新できる？
+      <%= f.submit '更新する', class: "btn btn-sm btn-success" %>
+      <%= link_to "　退会する", unsubscride_path, class: "glyphicon glyphicon-home btn btn-primary" %>
+    <% end %>
+
+  </div>
