@@ -1,7 +1,7 @@
 class Admin::CustomersController < ApplicationController
 
   def index
-    @customers = Customer.page(params[:page]) #allを無くしても大丈夫？kaminariがconfigに無い
+    @customers = Customer.page(params[:page])
   end
 
   def show
@@ -10,10 +10,10 @@ class Admin::CustomersController < ApplicationController
 
   def edit
     @customer = Customer.find(params[:id])
-    if @customer == current_user #ifを質問する
+    if @customer == current_customer #ifを質問する
        render :edit
     else
-       redirect_to customer_path(current_user.id)
+       redirect_to customer_path(current_customer.id)
     end
   end
 
@@ -29,7 +29,7 @@ class Admin::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :adress, :phone_number, :postal_code, :is_deleted)
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :address, :phone_number, :postal_code, :is_deleted)
   end
 
 end

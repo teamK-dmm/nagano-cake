@@ -16,7 +16,7 @@
     </tr>
     <tr class="table-info">
       <th scop="row">住所</th>
-        <td><%= @customer.adress %></td>
+        <td><%= @customer.address %></td>
     </tr>
     <tr class="table-info">
       <th scop="row">電話番号</th>
@@ -39,6 +39,6 @@
 
 
   <div class="col-sm-3 my-auto">
-    <%= link_to "編集する", edit_admin_customer_path, class: "btn btn-primary" %>
+    <%= link_to "会員情報を編集する", edit_admin_customer_path, class: "btn btn-primary" %>
     <%= link_to "注文履歴一覧を見る", admin_customer_path, class: "btn btn-primary mt-5" %> #後でパス合わせる
   </div>
