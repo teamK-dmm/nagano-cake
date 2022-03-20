@@ -1,0 +1,40 @@
+  <div class='container'>
+
+    <h2>マイページ</h2>
+    <table class="table table-hover">
+      <tr class="table-info">
+        <th scope="row">氏名</th>
+        <td><%= @customer.first_name %>&ensp;<%= @customer.last_name %></td>
+      </tr>
+      <tr class="table-info">
+        <th scop="row">カナ</th>
+        <td><%= @customer.first_name_kana %>&ensp;<%= @customer.last_name_kana %></td>
+      </tr>
+      <tr class="table-info">
+        <th scop="row">郵便番号</th>
+        <td><%= @customer.postal_code %></td>
+      </tr>
+      <tr class="table-info">
+        <th scop="row">住所</th>
+        <td><%= @customer.address %></td>
+      </tr>
+      <tr class="table-info">
+        <th scop="row">電話番号</th>
+        <td><%= @customer.phone_number %></td>
+      </tr>
+      <tr class="table-info">
+        <th scop="row">メールアドレス</th>
+        <td><%= @customer.email %></td>
+      </tr>
+    </table>
+
+    <p>
+      <%= link_to "登録情報を編集", customer_edit_path(@customer), class: "btn btn-light" %>
+      <%= link_to "配送先一覧", customer_edit_path(@customer), class: "btn btn-light" %>
+      <%= link_to "注文履歴", customer_edit_path(@customer), class: "btn btn-light" %> #link先あとで設定
+    </p>
+
+  </div>
+
+
+
