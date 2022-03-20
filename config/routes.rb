@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root to: "public/homes#top"
-  get "/about" => "public/homes#about", as: "about"
+    root to: "public/homes#top"
+    get "/about" => "public/homes#about", as: "about"
 
     get "customers/edit"=>"public/customers#edit", as: "customer_edit"
   devise_for :customers,skip:[:passwords], controllers: {
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
+
   namespace :admin do
     resources :items, only: [:index, :show, :edit, :update, :create]
   end
