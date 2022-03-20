@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root to: "public/homes#top"
-  get "/about" => "public/homes#about", as: "about"
+    root to: "public/homes#top"
+    get "/about" => "public/homes#about", as: "about"
 
     get "customers/edit"=>"public/customers#edit", as: "customer_edit"
   devise_for :customers,skip:[:passwords], controllers: {
@@ -13,14 +13,16 @@ Rails.application.routes.draw do
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  namespace :admin do
+    resources :items, only: [:index, :show, :edit, :update, :create]
+  end
 
   namespace :admin do
    resources :customers, only: [:index,:show,:edit,:update]
   end
   scope module: :public do
-   resources :customers, only: [:show,:update]
-
    get "customers/unsubscribe"=>"customers#unsubscribe", as: 'unsubscribe'
    patch "customers/withdraw"=>"customers#withdraw", as: 'withdraw'
+   resources :customers, only: [:show,:update]
   end
 end
