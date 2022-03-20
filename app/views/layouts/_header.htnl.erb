@@ -1,0 +1,19 @@
+ <header>
+      <nav class="navber navber-expand-lg navber-light">
+        <div class="container">
+          <!--<a class="navber-brand" hlef="/">ながのCAKE</a>　リンクにならない-->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if customers_signed_in? %>
+              <% elsif admin_signed_in? %>
+              <% else %>
+              <a class="btn btn-primary" href="/about" role="button">about</a>
+              <!--<li><a class="btn btn-outline-secondary mr-3vw" href="/about">About</a></li>-->
+				    	<!--<li><a class="btn btn-outline-secondary mr-3vw" href="/customers/sign_in">ログイン</a></li> 2行とも反映されない-->
+              <% end %>
+        </div>
+      </nav>
+    </header>

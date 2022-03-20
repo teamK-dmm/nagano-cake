@@ -73,6 +73,26 @@ ActiveRecord::Schema.define(version: 2022_03_18_041121) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "oder_items", force: :cascade do |t|
+    t.string "making_status"
+    t.string "count"
+    t.string "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "oders", force: :cascade do |t|
+    t.integer "shipping_fee", default: 800, null: false
+    t.integer "payment_method"
+    t.integer "billing_amount"
+    t.integer "status"
+    t.string "address"
+    t.string "postal_code"
+    t.string "receiver_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.string "making_status"
     t.string "count"
