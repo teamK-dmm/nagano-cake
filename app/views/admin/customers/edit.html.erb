@@ -1,6 +1,6 @@
   <div class='container'>
     <h2>登録情報編集</h2>
-    <%= form_with model:@customer, local:true do |f| %>
+    <%= form_with model:@customer, url: admin_customer_path(@customer), local:true do |f| %>
 
       <p><%= f.label :"会員ID#{@customer.id}" %></p>
       <p><%= f.label :"姓" %>
