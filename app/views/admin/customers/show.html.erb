@@ -1,0 +1,44 @@
+  <h2><%= @customer.first_name %>の詳細</h2> &ensp;<%#= last_name(@customer) %>#こちらではダメ？
+
+
+  <table class="table table-hover">
+    <tr class="table-info">
+      <th scope="row">氏名</th>
+        <td><%= @customer.first_name %>&ensp;<%= @customer.last_name %></td>
+    </tr>
+    <tr class="table-info">
+      <th scop="row">カナ</th>
+        <td><%= @customer.first_name_kana %>&ensp;<%= @customer.last_name_kana %></td>
+    </tr>
+    <tr class="table-info">
+      <th scop="row">郵便番号</th>
+        <td><%= @customer.postal_code %></td>
+    </tr>
+    <tr class="table-info">
+      <th scop="row">住所</th>
+        <td><%= @customer.address %></td>
+    </tr>
+    <tr class="table-info">
+      <th scop="row">電話番号</th>
+        <td><%= @customer.phone_number %></td>
+    </tr>
+    <tr class="table-info">
+      <th scop="row">メールアドレス</th>
+        <td><%= @customer.email %></td>
+    </tr>
+    <tr class="table-info">
+      <th>会員ID・ステータス</th>
+        <td><%= @customer.id %>&ensp;
+            <% if @customer.is_deleted == false %>
+              有効
+            <% else %>
+                退会済み
+            <% end %>
+        </td>
+  </table>
+
+
+  <div class="col-sm-3 my-auto">
+    <%= link_to "会員情報を編集する", edit_admin_customer_path, class: "btn btn-primary" %> #ユーザーのマイページに飛ぶ
+    <%= link_to "注文履歴一覧を見る", admin_customer_path, class: "btn btn-primary mt-5" %> #後でパス合わせる
+  </div>
