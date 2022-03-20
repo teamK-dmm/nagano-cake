@@ -4,18 +4,18 @@ class ApplicationController < ActionController::Base
 
   protected
     # ログイン時のパスを変更してる
-    def after_sign_in_path_for(resource)
-      if customer_signed_in?
-        customer_path(resource)
-      else
-        admin_top_path
-      end
-    end
+    # def after_sign_in_path_for(resource)
+    #   if customer_signed_in?
+    #     customer_path(resource)
+    #   else
+    #     admin_top_path
+    #   end
+    # end
 
     #ログアウト時のパスの変更
-    def after_sign_out_path_for(resource)
-      root_path
-    end
+    # def after_sign_out_path_for(resource)
+    #  root_path
+    # end
 
     # 新規登録の保存機能
     def configure_permitted_parameters
