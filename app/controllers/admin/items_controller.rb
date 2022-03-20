@@ -9,7 +9,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-   @item = Item.new
+   @item = Item.new(item_params)
     if @item.save
       redirect_to admin_item_path(@item), notice: "You have created item successfully."
     else
@@ -37,7 +37,7 @@ class Admin::ItemsController < ApplicationController
 
 
   def item_params
-    params.require(:item).permit(:name, :description, :is_active, :price,)
+    params.require(:item).permit(:name, :description, :is_active, :price, :image)
   end
 
 end
