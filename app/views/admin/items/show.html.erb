@@ -5,7 +5,11 @@
 
   <div class="row mt-3">
     <div class="offset-sm-1 col-sm-3">
-      <%= image_tag @item, :image, :fill, 200, 200, format: "jpeg", fallback: 'noimage.jpg', size: '200x200' %>
+      <% if @item.image.attached? %>
+      <%= image_tag @item.image, size: '200x200' %>
+      <% else %>
+      <%= image_tag 'no_image.jpg' %>
+      <% end %>
     </div>
 
     <div class="col-sm-4">
@@ -29,13 +33,18 @@
           <tr>
             <td>税込価格(税抜価格)</td>
             <td>
-              <%= @item.price * 1.1.floor %>(<%= @item.price %>)円
+              <%= (@item.price * 1.1).floor %>(<%= @item.price %>)円
             </td>
           </tr>
 
           <tr>
             <td>販売ステータス</td>
-            <td><%= @item.is_active %></td>
+            <td>
+              <% if @item.is_active == true %>
+                販売中
+              <% else %>
+              　売り切れ
+              <% end %></td>
           </tr>
         </tbody>
 

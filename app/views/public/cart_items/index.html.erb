@@ -26,7 +26,11 @@
             <tbody>
               <tr class="brown-border">
                 <td class="align-middle">
-                  <%= image_tag cart_item.item, :image, size: "50x50", fallback: "no_image.jpg" %>
+                  <% if @item.image.attached? %>
+                  <%= image_tag cart_item.item, :image, size: "50x50" %>
+                  <% else %>
+                  <%= image_tag 'no_image.jpg' %>
+                  <% end %>
                   <span><%= cart_item.item.name %></span>
                 </td>
                 <td class="align-middle"><%= (cart_item.item.price * 1.1).floor %></td>
