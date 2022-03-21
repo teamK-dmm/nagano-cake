@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   namespace :admin do
-    resources :items, only: [:index, :show, :edit, :update, :create]
+    resources :items, only: [:index, :show, :edit, :update, :create, :new]
   end
 
   namespace :admin do
@@ -25,4 +25,6 @@ Rails.application.routes.draw do
    patch "customers/withdraw"=>"customers#withdraw", as: 'withdraw'
    resources :customers, only: [:show,:update]
   end
+  
+  resources :cart_item, only: [:index, :show, :create, :update, :destroy]
 end

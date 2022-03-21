@@ -13,9 +13,9 @@ class Admin::ItemsController < ApplicationController
     if @item.save
       redirect_to admin_item_path(@item), notice: "You have created item successfully."
     else
-      @items = Item.all
-      render 'index'
+      @items = Item.page(params[:page])
     end
+      render 'index'
   end
 
   def show
