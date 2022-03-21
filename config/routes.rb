@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   namespace :admin do
-    root to: "homes#top"
     resources :items, only: [:index, :show, :edit, :update, :create]
   end
 
@@ -25,5 +24,12 @@ Rails.application.routes.draw do
    get "customers/unsubscribe"=>"customers#unsubscribe", as: 'unsubscribe'
    patch "customers/withdraw"=>"customers#withdraw", as: 'withdraw'
    resources :customers, only: [:show,:update]
+  end
+  
+  namespace :admin do
+   root to: "homes#top"
+   resources :genres
+   resources :oders_items
+   resources :oders
   end
 end
