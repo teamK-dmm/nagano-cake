@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_20_051524) do
+ActiveRecord::Schema.define(version: 2022_03_21_085117) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 2022_03_20_051524) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-
   create_table "cart_items", force: :cascade do |t|
     t.integer "count", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -98,26 +97,6 @@ ActiveRecord::Schema.define(version: 2022_03_20_051524) do
     t.text "description", null: false
     t.boolean "is_active", default: true, null: false
     t.integer "price", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "oder_items", force: :cascade do |t|
-    t.string "making_status"
-    t.string "count"
-    t.string "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "oders", force: :cascade do |t|
-    t.integer "shipping_fee", default: 800, null: false
-    t.integer "payment_method"
-    t.integer "billing_amount"
-    t.integer "status"
-    t.string "address"
-    t.string "postal_code"
-    t.string "receiver_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
