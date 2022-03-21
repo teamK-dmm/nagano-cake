@@ -1,0 +1,12 @@
+<%= image_tag @item.image, size "100x100" %>
+
+<%= @item.name %>
+
+<%= @item.description %>
+
+<%= @item.price %>
+
+<%= form_with model:@cart_item do |f| %>
+  <%= f.number_field :quantity, min:1, placeholder: "個数選択" %><span>個</span>
+  <%= f.submit "カートに入れる", class: "btn btn-outline-danger" %>
+<% end %>

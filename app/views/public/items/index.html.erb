@@ -1,0 +1,11 @@
+<h1>商品一覧</h1>
+
+<% @items.each do |item| %>
+
+  <p>画像</p>
+  <%= image_tag item.image, size: "100x100" %>
+  
+  <p><%= item.name %></p>
+  
+  <p><%= integer.item %></p>
+  
