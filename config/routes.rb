@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :genres
   namespace :admin do
-    resources :items, only: [:index, :show, :edit, :update, :create]
+    resources :items, only: [:index, :show, :edit, :update, :create, :new]
   end
 
   namespace :admin do
@@ -26,5 +26,7 @@ Rails.application.routes.draw do
    patch "customers/withdraw"=>"customers#withdraw", as: 'withdraw'
    resources :customers, only: [:show,:update]
   end
+  
+  resources :cart_item, only: [:index, :show, :create, :update, :destroy]
 
 end
