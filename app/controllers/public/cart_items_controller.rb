@@ -9,25 +9,18 @@ class Public::CartItemsController < ApplicationController
 
 
 	def create
-    @cart_item = current_customer.cart_items.new(params_cart_item)
-
-      # カートの中に同じ商品が重複しないようにして　古い商品と新しい商品の数量を合わせる
-    @update_cart_item =  CartItem.find_by(item: @cart_item.item)
-    if @update_cart_item.present? && @cart_item.valid?
-        @cart_item.quantity += @update_cart_item.quantity
-        @update_cart_item.destroy
-    end
-    if @cart_item.save
-      flash[:notice] = "#{@cart_item.product.name}をカートに追加しました"
-      redirect_to items_path
+   @cart_item = CartItem.new(cart_item_params)
+   @cart_item.customer_id = current_customer.id
+   @validate_into_cart = @cart_item.validate_into_cart
+    if @validate_into_cart == false
+      flash[:into_cart_error] = "個数が選択されていないか、すでにカートに追加されているアイテムです。"
+      redirect_to item_path(params[:cart_item][:item_id])
     else
-      @item = Item.find(params[:cart_item][:product_id])
-      @cart_item = CartItem.new
-      flash[:alert] = "個数を選択してください"
-      render ("customer/products/show")
+     @cart_item.save
+     redirect_to cart_items_path
     end
-	end
-	
+  end
+
 	def update
     @cart_item = CartItem.find(params[:id])
     @cart_item.update(cart_item_params)
