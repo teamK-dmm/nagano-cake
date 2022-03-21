@@ -3,17 +3,10 @@ class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @cart_items = current_cart
+    @cart_items = current_customer.cart_item.items
+    @total = total_price(@cart_items).to_s(:delimited)
   end
 
-	def update
-    @cart_item.update(quantity: params[:cart_item][:quantity].to_i)
-    flash.now[:success] = "#{@cart_item.product.name}の数量を変更しました"
-    @price = sub_price(@cart_item).to_s(:delimited)
-    @cart_items = current_cart
-    @total = total_price(@cart_items).to_s(:delimited)
-    # redirect_to customers_cart_items_path
-	end
 
 	def create
     @cart_item = current_customer.cart_items.new(params_cart_item)
@@ -34,12 +27,18 @@ class Public::CartItemsController < ApplicationController
       render ("customer/products/show")
     end
 	end
+	
+	def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    redirect_to cart_items_path
+  end
 
 	def all_destroy
     @cart_items = current_customer.cart_items
     @cart_items.destroy_all
     flash[:alert] = "カートの商品を全て削除しました"
-    redirect_to customers_cart_items_path
+    redirect_to cart_item_index_path
 	end
 
 	def destroy
