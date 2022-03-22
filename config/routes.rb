@@ -31,8 +31,8 @@ Rails.application.routes.draw do
 
     namespace :admin do
       root to: "homes#top"
-      resources :oders_items
-      resources :oders
+      resources :orders_items
+      resources :orders
     end
 
 
