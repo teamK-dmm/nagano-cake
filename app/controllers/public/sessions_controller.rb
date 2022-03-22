@@ -35,10 +35,10 @@ class Public::SessionsController < Devise::SessionsController
     return if !@customer
     ##[処理内容2]取得したアカウントのパスワードと入力されたパスワードが一致しているかを判別
     if @customer
-      if (@customer.valid_password?(params[:customer][:password]) && (@user.active_for_authentication? == false))
+      if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
       ##[処理内容3]trueの場合のみサインアップ画面にリダイレクトする
         flash[:error] = "退会済みです"
-        redirect_to new_user_session_path
+        redirect_to new_customer_session_path
       end
     else
       flash[:error] = "必須項目を入力してください"
