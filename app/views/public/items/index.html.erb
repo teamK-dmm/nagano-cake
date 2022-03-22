@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="card">
+      <div class="card-header">
+        ジャンル
+      </div>
+      <div class="card-body">
+        <% @genres.each do |genre| %>
+          <p class="card-text"><%= genre.name%></p>
+        <% end %>
+      </div>
+    </div>
+
+    <section>
+      <h1><strong>商品一覧</strong><span class="count">（全<%= @itemscount.count %>件）</span></h1>
+        <div class="item-lists">
+        <% @items.each do |item| %>
+          <%= link_to public_item_path(item.id) do %>
+            <%= image_tag item.get_image(100,100) %><br>
+            <%= item.name %><br>
+          <% end %>
+          <%= (item.price*1.1).floor %>円（税込）
+        <% end %>
+        <div class="row justify-content-center">
+          <div>
+            <%= paginate @items %>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
