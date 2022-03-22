@@ -1,5 +1,5 @@
 class Public::CartItemsController < ApplicationController
-  before_action :set_cart_item, only: [:update, :destroy]
+  #before_action :set_cart_item, only: [:update, :destroy]
   before_action :authenticate_customer!
 
   def index
@@ -18,7 +18,7 @@ def create
       @first_cart_item.update_attribute(:count,@new_count)
       @cart_item.delete
       flash[:into_cart_error] = "個数が選択されていないか、すでにカートに追加されているアイテムです。"
-      redirect_to item_path(params[:cart_item][:item_id])
+      redirect_to cart_items_path
     else
      @cart_item.save
      redirect_to cart_items_path
@@ -35,20 +35,21 @@ end
     @cart_items = current_customer.cart_items
     @cart_items.destroy_all
     flash[:alert] = "カートの商品を全て削除しました"
-    redirect_to cart_item_index_path
+    redirect_to cart_items_path
 	end
 
 	def destroy
-	@cart_item = CartItem.find(params[:cart_item][:item_id])
+	@cart_item = CartItem.find(params[:id])
     @cart_item.destroy
-    flash.now[:alert] = "#{@cart_item.product.name}を削除しました"
-    @cart_items = current_cart
+    flash.now[:alert] = "#{@cart_item.item.name}を削除しました"
+    #@cart_items = current_cart
+    redirect_to cart_items_path
     #@sum = total_price(@cart_items).to_s(:delimited)
 	end
 
   private
 
-  def params_cart_item
-    params.require(:cart_item).permit(:quantity, :item_id)
+  def cart_item_params
+    params.require(:cart_item).permit(:count, :item_id, :customer_id)
   end
 end

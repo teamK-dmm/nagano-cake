@@ -11,8 +11,14 @@ Rails.application.routes.draw do
     devise_for :customers,skip:[:passwords], controllers: {registrations: "public/registrations",sessions: 'public/sessions'}
     devise_for :admin,skip:[:registrations, :passwords], controllers: {sessions: "admin/sessions"}
 
-    #genre
+    # genre
     resources :genres
+
+    # public
+    namespace :public do
+     resources :items, only:[:index, :show]
+     resources :orders, only:[:new, :index, :show, :thanks, :create, :log]
+    end
 
     #admin
     namespace :admin do
@@ -24,6 +30,7 @@ Rails.application.routes.draw do
     scope module: :public do
       get "customers/unsubscribe"=>"customers#unsubscribe", as: 'unsubscribe'
       patch "customers/withdraw"=>"customers#withdraw", as: 'withdraw'
+      delete "cart_items/all_destroy" => "cart_items#all_destroy", as: "all_destroy"
       resources :customers, only: [:show,:update]
       resources :addresses, only: [:index, :create, :destroy, :edit, :update]
       resources :cart_items, only: [:index, :show, :create, :update, :destroy]
