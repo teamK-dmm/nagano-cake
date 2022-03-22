@@ -1,2 +1,16 @@
-<p>注文情報入力</p>
-<string><p>支払い方法</p></string>
+<div class="container">
+  <div class="row mt-5 mb-3">
+    <h3 class="bg-light offset-1">注文情報入力</h3>
+  </div>
+  <div class="row mt-3">
+    <div class="col-9">
+      <%= form_with model:@orders, url: public_orders_log_path do |f| %>
+      <h4 class="d-inline-block"><strong>支払方法</strong></h4><br>
+      <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+      <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %><br>
+      
+      <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+      <%= f.label :payment_method, Order.payment_methods_i18n[:transfer]%>
+      <% end %>
+    </div>
+  </div>  
