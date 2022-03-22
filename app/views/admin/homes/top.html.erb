@@ -10,7 +10,7 @@
     <% @orders.each do |order| %>
     <tr>
       <!--下に詳細ページ後で追加-->
-      <td><%= link_to order.created_at,"#" %></td>
+      <td><%= link_to order.created_at,admin_oders_item %></td>
       <td><%= order.total_amount %></td>
       <td><%= order.status %></td>
     </tr>
