@@ -9,16 +9,16 @@ Rails.application.routes.draw do
   }
   namespace :public do
     resources :items, only:[:index, :show]
+    resources :orders, only:[:new, :index, :show, :thanks, :create, :log]
   end
 
   devise_for :admin,skip:[:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
-  resources :genres
   namespace :admin do
     resources :items, only: [:index, :show, :edit, :update, :create, :new]
+    resources :genres
   end
 
   namespace :admin do
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
    patch "customers/withdraw"=>"customers#withdraw", as: 'withdraw'
    resources :customers, only: [:show,:update]
   end
-  
+
   resources :cart_item, only: [:index, :show, :create, :update, :destroy]
 
 end
