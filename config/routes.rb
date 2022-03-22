@@ -1,35 +1,39 @@
 Rails.application.routes.draw do
+
+    # Top
     root to: "public/homes#top"
     get "/about" => "public/homes#about", as: "about"
 
+    #customer/edit
     get "customers/edit"=>"public/customers#edit", as: "customer_edit"
-  devise_for :customers,skip:[:passwords], controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
 
-  devise_for :admin,skip:[:registrations, :passwords], controllers: {
-    sessions: "admin/sessions"
-  }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+    #devise
+    devise_for :customers,skip:[:passwords], controllers: {registrations: "public/registrations",sessions: 'public/sessions'}
+    devise_for :admin,skip:[:registrations, :passwords], controllers: {sessions: "admin/sessions"}
 
-  namespace :admin do
-    resources :items, only: [:index, :show, :edit, :update, :create]
-  end
+    #genre
+    resources :genres
 
-  namespace :admin do
-   resources :customers, only: [:index,:show,:edit,:update]
-  end
-  scope module: :public do
-   get "customers/unsubscribe"=>"customers#unsubscribe", as: 'unsubscribe'
-   patch "customers/withdraw"=>"customers#withdraw", as: 'withdraw'
-   resources :customers, only: [:show,:update]
-  end
-  
-  namespace :admin do
-   root to: "homes#top"
-   resources :genres
-   resources :oders_items
-   resources :oders
-  end
+    #admin
+    namespace :admin do
+     resources :items, only: [:index, :show, :edit, :update, :create]
+     resources :customers, only: [:index,:show,:edit,:update]
+    end
+
+    #public
+    scope module: :public do
+      get "customers/unsubscribe"=>"customers#unsubscribe", as: 'unsubscribe'
+      patch "customers/withdraw"=>"customers#withdraw", as: 'withdraw'
+      resources :customers, only: [:show,:update]
+      resources :addresses, only: [:index, :create, :destroy, :edit, :update]
+      resources :cart_items, only: [:index, :show, :create, :update, :destroy]
+    end
+
+    namespace :admin do
+      root to: "homes#top"
+      resources :oders_items
+      resources :oders
+    end
+
+
 end
