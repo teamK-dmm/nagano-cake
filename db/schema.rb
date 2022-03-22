@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2022_03_21_085117) do
-=======
-ActiveRecord::Schema.define(version: 2022_03_22_070611) do
->>>>>>> 1a78978dbc02e883d169dad3da0c57a049149eeb
+ActiveRecord::Schema.define(version: 2022_03_22_041545) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -45,6 +41,7 @@ ActiveRecord::Schema.define(version: 2022_03_22_070611) do
   end
 
   create_table "addresses", force: :cascade do |t|
+    t.string "customer_id"
     t.string "receiver_name"
     t.string "address"
     t.string "postal_code"
@@ -79,7 +76,7 @@ ActiveRecord::Schema.define(version: 2022_03_22_070611) do
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.string "adress", null: false
+    t.string "address", null: false
     t.string "phone_number", null: false
     t.string "postal_code", null: false
     t.boolean "is_deleted", default: false, null: false
@@ -106,7 +103,6 @@ ActiveRecord::Schema.define(version: 2022_03_22_070611) do
     t.integer "price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "genre_id"
   end
 
   create_table "order_items", force: :cascade do |t|
