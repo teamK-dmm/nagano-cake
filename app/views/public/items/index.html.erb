@@ -19,7 +19,7 @@
       <h2><strong>商品一覧</strong><span class="count">（全<%= @itemscount.count %>件）</span></h1>
         <% @items.each do |item| %>
           <div class="d-inline-flex p-2 bd-highlight ">
-          <%= link_to public_item_path(item.id), :style => "color: red;" do %>
+          <%= link_to public_item_path(item.id), :style => "color: #000000;" do %>
             <%= image_tag item.get_image(100,100) %><br>
             <%= item.name %><br>
             <%= (item.price*1.1).floor %>円（税込）
