@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 2022_03_21_085212) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "count", null: false
+    t.integer "customer_id"
+    t.integer "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -73,7 +75,7 @@ ActiveRecord::Schema.define(version: 2022_03_21_085212) do
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.string "adress", null: false
+    t.string "address", null: false
     t.string "phone_number", null: false
     t.string "postal_code", null: false
     t.boolean "is_deleted", default: false, null: false
@@ -94,6 +96,7 @@ ActiveRecord::Schema.define(version: 2022_03_21_085212) do
 
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "genre_id"
     t.text "description", null: false
     t.boolean "is_active", default: true, null: false
     t.integer "price", null: false
