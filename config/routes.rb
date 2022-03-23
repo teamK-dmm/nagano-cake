@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     end
     #admin
     namespace :admin do
-     resources :genres
      resources :items, only: [:index, :show, :edit, :update, :create, :new]
      resources :customers, only: [:index,:show,:edit,:update]
     end
@@ -30,5 +29,6 @@ Rails.application.routes.draw do
       resources :addresses, only: [:index, :create, :destroy, :edit, :update]
       resources :cart_items, only: [:index, :show, :create, :update, :destroy]
     end
+    
 
 end
