@@ -1,7 +1,7 @@
 <div class="container hight ">
   <div class="row ">
 
-    <h2>ジャンル一覧・追加</h2>
+
 
     <!--何も入力していない時エラーが出るように-->
     <% if @genre.errors.any? %>
@@ -13,16 +13,7 @@
       </ul>
     <% end %>
 
-     <!--ジャンル用form_で記載する時削除 -->
-     <!--正直正しいか怪しいform_with?for?-->
-     <%= form_with model: @genre do |f| %>
-      <div class="field row ">
-        <lavel></lavel>
-        <%= f.text_field :name %>
-       <!--ボタンの記述 -->
-        <%= f.submit "追加", class: "btn btn-primary" %>
-      </div>
-    <% end %>
+
 
     <table class = "table table-hover">
       <thead>
@@ -42,5 +33,17 @@
       </tbody>
     </table>
     <%= paginate @genres %>
+
+         <!--ジャンル用form_で記載する時削除 -->
+     <!--正直正しいか怪しいform_with?for?-->
+     <%= form_with model: @genre do |f| %>
+      <div class="field row ">
+        <h4><%= f.label :"ジャンル追加" %></h4>
+      </div>
+        <p><%= f.text_field :name %></p>
+       <!--ボタンの記述 -->
+        <p><%= f.submit "追加", class: "btn btn-primary" %></p>
+
+    <% end %>
   </div>
 </div>
