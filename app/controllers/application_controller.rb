@@ -29,12 +29,6 @@ class ApplicationController < ActionController::Base
 
   # before_action作成
 
-  def set_product
-    @product = Product.find(params[:id])
-  end
-
-  def set_customer
-    @customer = Customer.find(params[:id])
-  end
+ 
 
 end
