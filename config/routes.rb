@@ -15,9 +15,7 @@ Rails.application.routes.draw do
     # public
     namespace :public do
      resources :items, only:[:index, :show]
-     resources :orders, only:[:new, :index, :show, :create]
-     post "orders/log"=>"orders#log"
-     get "orders/thanks"=>"oeders#thanks"
+     resources :orders, only:[:new, :index, :show, :thanks, :create, :log]
     end
 
     #admin

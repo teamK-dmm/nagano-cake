@@ -26,7 +26,7 @@ class Public::OrdersController < ApplicationController
       render :new
     end
 
-    @order.total_payment = params[:total_price].to_i + @order.postage
+    @order.total_payment = params[:bullin_amount].to_i + @order.postage
 
     @cart_items = current_customer.cart_items
     @total_price = 0
