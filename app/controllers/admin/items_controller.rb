@@ -9,11 +9,11 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-   @item = Item.new
+   @item = Item.new(item_params)
     if @item.save
       redirect_to admin_item_path(@item), notice: "You have created item successfully."
     else
-      @items = Item.all
+      @items = Item.page(params[:page])
       render 'index'
     end
   end
@@ -29,7 +29,7 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to edit_admin_path(@item), notice: "You have updated book successfully."
+      redirect_to admin_items_path(@item), notice: "You have updated book successfully."
     else
       render :edit
     end
@@ -37,7 +37,7 @@ class Admin::ItemsController < ApplicationController
 
 
   def item_params
-    params.require(:item).permit(:name, :description, :is_active, :price,)
+    params.require(:item).permit(:name, :description, :is_active, :price, :image, :genre_id)
   end
 
 end
