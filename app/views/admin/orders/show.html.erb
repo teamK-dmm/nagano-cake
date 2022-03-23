@@ -2,31 +2,48 @@
 <table>
   <tr>
     <th>購入者</th>
-
-    <th>注文日</th>
-
-    <th>配送先</th>
-
-    <th>支払方法</th>
-
-    <th>注文ステータス</th>
-
-    <!--ここはプルダウンで-->
+    <td><%= @order.public %></td>
+  </tr>
   <tr>
+    <th>注文日</th>
+    <td><%= @order.customer.last_name %> <%= @order.customer.first_name %>></td>
+  </tr>
+  <tr>
+    <th>配送先</th>
+    <td>〒<%= @order.postal_code %> <%= @order.address %></td>
+  </tr>
+  <tr>
+    <th>支払方法</th>
+    <td><%= @order.derspayment_method %></td>
+  </tr>
+  <tr>
+    <th>注文ステータス</th>
+      <%= form_with model: @order do |f| %>
+       <%= f.select :order_status,["入金待ち","入金確認","製作中","発送準備中","発送済"] %>
+       <%= f.submit '更新', class:"btn btn-lg btn-block btn-info mt-4" %>
+      <% end %>
+  </tr>
 </table>
+  <tr>
+    <th>商品名</th>
 
-<tr>
-  <th>商品名</th>
-  <th>単価（税込み）</th>
-  <th>小計</th>
-  <th>製作ステータス</th>
-   <!--ここはプルダウンで-->
-</tr>
+    <th>単価（税込み）</th>
+    <th>小計</th>
+    <th>製作ステータス</th>
+     <!--ここはプルダウンで-->
+    <th>更新ボタンを作りたい</th>
 
-
+  </tr>
+<% @order.each do |f| %>
+ <%= form_with model: @order do |f| %>
+<% end %>
+<!--ここは全く分からない-->
 <tr>
   <th>合計金額</th>
+  <%= @total %>
   <th>送料</th>
+  <%= @order.shipping_fee %>
   <th>請求金額合計</th>
+  <%= @total + @order.shipping_fee %>
 </tr>
 
