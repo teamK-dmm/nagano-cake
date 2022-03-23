@@ -9,9 +9,9 @@ class Public::OrdersController < ApplicationController
     if params[:order][:address_option] == "0"
       @order.name = current_customer.last_name + current_customer.first_name
       @order.postal_code = current_customer.postal_code
-      @order.address = current_customer.address
+      @order.address = current_customer.adress
     elsif params[:order][:address_option] == "1"
-      @address = Address.find_by(id: params[:order][:address_book])
+      @address = Address.find_by(id: params[:order][:address_])
       @order.name = @address.name
       @order.postal_code = @address.posal_code
       @order.address = @address.address
@@ -26,8 +26,7 @@ class Public::OrdersController < ApplicationController
       render :new
     end
 
-    @order.total_payment = params[:total_price].to_i + @order.postage
-
+    @order.billing_amount = params[:billing_amount].to_i + @order.postage
     @cart_items = current_customer.cart_items
     @total_price = 0
     @cart_items.each do |cart_item|
