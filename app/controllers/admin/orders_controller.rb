@@ -6,6 +6,7 @@ class Admin::OrdersController < ApplicationController
     @total = 0
     @order_items.each do |order_item|
     @total = @total+order_item.count*order_item.item.price
+    # 表示出来たら消費税も
     end
   end
 end
