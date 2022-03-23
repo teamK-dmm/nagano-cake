@@ -29,6 +29,9 @@ Rails.application.routes.draw do
       resources :addresses, only: [:index, :create, :destroy, :edit, :update]
       resources :cart_items, only: [:index, :show, :create, :update, :destroy]
     end
-    
 
+    namespace :admin do
+      resources :genres
+      root to: "homes#top"
+    end
 end
