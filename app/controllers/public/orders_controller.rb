@@ -7,26 +7,26 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
 
     if params[:order][:address_option] == "0"
-      @order.name = current_customer.last_name + current_customer.first_name
+      @order.receiver_name = current_customer.last_name + current_customer.first_name
       @order.postal_code = current_customer.postal_code
-      @order.address = current_customer.adress
+      @order.address = current_customer.address
     elsif params[:order][:address_option] == "1"
-      @address = Address.find_by(id: params[:order][:address_])
-      @order.name = @address.name
+      @address = Address.find_by(id: params[:order][:address])
+      @order.receiver_name = @address.name
       @order.postal_code = @address.posal_code
       @order.address = @address.address
     elsif params[:order][:address_option] == "2"
-      @order.name = params[:order][:name]
+      @order.receiver_name = params[:order][:name]
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
     end
 
-    if @order.name == "" || @order.postal_code == "" ||@order.address == ""
+    if @order.receiver_name == "" || @order.postal_code == "" ||@order.address == ""
       flash.now[:alert] = "配送先を確認してください"
       render :new
     end
 
-    @order.billing_amount = params[:billing_amount].to_i + @order.postage
+    @order.billing_amount = params[:billing_amount].to_i + @order.shipping_fee
     @cart_items = current_customer.cart_items
     @total_price = 0
     @cart_items.each do |cart_item|
@@ -52,7 +52,7 @@ class Public::OrdersController < ApplicationController
           @order_item.save
        end
        cart_items.destroy_all
-       redirect_to complete_orders_path
+       redirect_to thanks_orders_path
     else
       @cart_items = current_customer.cart_items
       @cart_items = current_customer.cart_items
@@ -62,7 +62,7 @@ class Public::OrdersController < ApplicationController
         @price = (@item.price * 1.1)*(cart_item.count)
         @total_price += @price
       end
-      render :confirm
+      render :log
     end
   end
 
