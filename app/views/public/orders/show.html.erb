@@ -47,11 +47,11 @@
             <tr>
               <th class="info">商品合計</th>
               <td class="col-xs-5">
-                ¥<%= (@order.total_payment - @order.postage).to_s(:delimited, delimiter: ',') %>
+                ¥<%= (@order.total_payment - @order.postage).to_s(:delimited, delimiter: ',') %><!-- 分からない  -->
               </td>
             </tr>
             <tr>
-              <th class="info">ご請求金額</th>
+              <th class="info">ご請求金額</th><!-- 分からない  -->
               <td class="col-xs-5">
                 ¥<%= @order.total_payment.to_s(:delimited, delimiter: ',') %>
               </td>
