@@ -31,13 +31,13 @@ class Public::OrdersController < ApplicationController
     @total_price = 0
     @cart_items.each do |cart_item|
     @item = Item.find_by(id: cart_item.item_id)
-    @price = (@item.price * 1.1)*(cart_item.count)
+    @price = (@item.price)*(cart_item.count)
     @total_price += @price
     end
   end
 
   def create
-    @order = Oder.new(oder_params)
+    @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.shipping_fee = 800
 
@@ -59,7 +59,7 @@ class Public::OrdersController < ApplicationController
       @total_price = 0
       @cart_items.each do |cart_item|
         @item = Item.find_by(id: cart_item.item_id)
-        @price = (@item.price * 1.1)*(cart_item.count)
+        @price = (@item.price)*(cart_item.count)
         @total_price += @price
       end
       render :log
@@ -80,7 +80,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :receiver_name, :billing_amount)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :receiver_name, :billing_amount, :shipping_fee)
   end
 
 end

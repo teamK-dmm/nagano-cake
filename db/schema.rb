@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2022_03_23_044341) do
-=======
-ActiveRecord::Schema.define(version: 2022_03_20_051524) do
->>>>>>> 7eb7e86f4277526b1483bead9e93b328ac9d57ed
+ActiveRecord::Schema.define(version: 2022_03_23_102127) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -64,7 +60,6 @@ ActiveRecord::Schema.define(version: 2022_03_20_051524) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-<<<<<<< HEAD
   create_table "cart_items", force: :cascade do |t|
     t.integer "count", null: false
     t.integer "customer_id"
@@ -73,8 +68,6 @@ ActiveRecord::Schema.define(version: 2022_03_20_051524) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-=======
->>>>>>> 7eb7e86f4277526b1483bead9e93b328ac9d57ed
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -103,12 +96,12 @@ ActiveRecord::Schema.define(version: 2022_03_20_051524) do
 
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "genre_id"
     t.text "description", null: false
     t.boolean "is_active", default: true, null: false
     t.integer "price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "genre_id"
   end
 
   create_table "oder_items", force: :cascade do |t|
@@ -141,14 +134,15 @@ ActiveRecord::Schema.define(version: 2022_03_20_051524) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "shipping_fee", default: 800, null: false
-    t.integer "payment_method"
+    t.integer "payment_method", default: 0
     t.integer "billing_amount"
-    t.integer "status"
+    t.integer "status", default: 0
     t.string "address"
     t.string "postal_code"
     t.string "receiver_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "customer_id"
   end
 
   create_table "users", force: :cascade do |t|
