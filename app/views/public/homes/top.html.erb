@@ -1,39 +1,61 @@
 <div class="container">
-  <div class="row mt-5">
-    <div class="col-2">
-      <table class="table table-bordered">
-        <thead>
-          <tr >
-            <th class="text-center">ジャンル</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @genres.each do |genre| %>
-            <tr>
-              <td><%= genre.name %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-10">
-      <section class="main-visual mt-4">
-        <div class="mv-text">
-          <p class=text-center>ようこそ、ながのCAKEへ！</p><br>
-          <p class=text-center>このサイトは、ケーキ販売のECサイトになります。</p><br>
-          <p class=text-center>会員でない方も商品を閲覧できますが、</p><br>
-          <p class=text-center>購入には会員登録が必要になります。</p><br>
-        <div>
-      <section>
+  <div class="row justify-content-center">
+    <div class="col-12">
+        <section class="main-visual mt-4">
+          <div class="mv-text">
+            <h3 class=text-center>ようこそ、ながのCAKEへ！</h3><br>
+          <div>
+        </section>
+        <div class="row justify-content-center">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <%= image_tag 'gorira-3-44', size: "500x300" %>
+                  <div class="carousel-caption d-none d-md-block">
+                <h5>私はゴリラです。</h5>
+                <p>全国のゴリラをあなたへ届けます。ゴリラでなくても大丈夫です。</p>
+              </div>
+                </div>
+                <div class="carousel-item">
+                  <%= image_tag 'sunset', size: "500x300" %>
+                  <div class="carousel-caption d-none d-md-block">
+                <h5>夕日</h5>
+                <p>うんぴょ</p>
+              </div>
+                </div>
+                <div class="carousel-item">
+                  <%= image_tag 'もつ鍋', size: "500x300" %>
+                  <div class="carousel-caption d-none d-md-block">
+                <h5>私はもつ鍋です。</h5>
+                <p>全国のもつ鍋をあなたへ届けます。</p>
+              </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+          </div>
+        </div>
     </div>
   </div>
 
-  <div class="row mt-4">
+  <section class="main-visual mt-4">
+  <div class="row">
     <section class="new-items col-md-12">
-      <h3><strong>新着商品</strong></h3>
-      <div class="row">
+      <h3><strong>&ensp;&ensp;&ensp;&ensp;&ensp;新着商品</strong></h3>
+      <div class="row justify-content-center">
         <% @items.each do |item| %>
-          <div class="col-3">
+          <div class="col-2">
             <div class="card border border-0">
               <%= link_to public_item_path(item.id) do %>
                 <%= image_tag item.get_image(100,100) %><br>
@@ -48,7 +70,9 @@
       </div>
     </section>
   </div>
-  <div class="col-md-12 text-right">
+  </section>
+  <div class="col-md-12 text-center">
     <%= link_to "全ての商品を見る>", public_items_path %>
   </div>
 </div>
+
