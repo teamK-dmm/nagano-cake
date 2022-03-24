@@ -12,6 +12,7 @@ ja:
           preparing_ship: "発送準備中"
           shipped_items: "発送済み"
 
+      order_item:
         making_status:
           before: "着手不可"
           wait: "製作待ち"
