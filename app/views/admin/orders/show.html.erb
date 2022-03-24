@@ -19,8 +19,7 @@
   <tr>
     <th>注文ステータス</th>
       <%= form_with model: @order do |f| %>
-      <!--enumヘルプ入っている-->
-       <%#= f.select :order_status,["入金待ち","入金確認","製作中","発送準備中","発送済"] %>
+       <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
        <%= f.submit '更新', class:"btn btn-lg btn-block btn-info mt-4" %>
       <% end %>
   </tr>
@@ -41,8 +40,7 @@
   <td><%= order_item.count %></td>
   <td><%= ( order_item.count*order_item.item.price * 1.1).floor %></td>
    <%= form_with model: order_item do |f| %>
-   <!--enum使用する（enumヘルプは入っている）-->
-  <td><%#= f.select :order_status,["着手不可","製作待ち","製作中","製作完了"] %></td>
+  <td><%= f.select :making_status,order_items.keys.map {|k| [I18n.t("enums.order.status.#{k}"), %></td>
   <td><%= f.submit "更新" ,class:"btn btn-primary btn-xs" %></td>
   <% end %>
 </tr>
