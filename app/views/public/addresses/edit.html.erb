@@ -1,43 +1,33 @@
 <!--会員側の配送先編集画面-->
-<div class="container my-4">
-  <div class="row mt-3">
-    <div class="col-3">
-      <h2 class="offset-2">配送先編集</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="offset-2">
+        <h2 class="red-border px-3">配送先編集</h2>
+      </div>
+
+      <!--配送先編集項目-->
+      <%= form_with model: @address, url: address_path(@address), method: :patch, local: true do |f| %>
+        <table>
+          <thead>
+            <tr>
+              <td class="col-md-4"><%= f.label :配送先名 %></td>
+              <td class="col-md-4"><%= f.text_field :receiver_name, placeholder: "長野恵子" %></td>
+            </tr>
+
+            <tr>
+              <td class="col-md-4"><%= f.label :住所 %></td>
+              <td class="col-md-4"><%= f.text_field :address, placeholder: "大阪府大阪市北区" %></td>
+            </tr>
+
+            <tr>
+              <td class="col-md-4"><%= f.label :郵便番号 %></td>
+              <td class="col-md-4"><%= f.text_field :postal_code, placeholder: '000-0000', class: "form-control" %></td>
+              <td class="col-md-4"><%= f.submit "変更を保存", class: "btn btn-success" %></td>
+            </tr>
+          </thead>
+        </table>
+      <% end %>
     </div>
   </div>
-  <%= form_with model: @address do |f| %>
-    <div class="row d-flex justify-content-start mt-3">
-      <!--配送先名の例-->
-      <div class="col-2 m-auto">
-        <%= f.label :配送先名, class: 'mt-1' %>
-      </div>
-      <div class="f.col-2 mt-2">
-        <%= f.text_field :receiver_name, class: "form-control" %>
-      </div>
-      <div class="col-8 mt-2"></div>
-      <!--住所の例-->
-      <div class="col-2 m-auto">
-        <%= f.label :住所, class: 'mt-1' %>
-      </div>
-      <div class="col-4 mt-2">
-        <%= f.text_field :address, placeholder: '大阪市大阪府北区', class: "form-control" %>
-      </div>
-      <div class="col-6 mt-2"></div>
-      <!--郵便番号の例-->
-      <div class="col-2 m-auto">
-        <%= f.label :郵便番号, 'mt-1' %>
-      </div>
-      <div class="col-2 mt-2">
-        <%= f.text_field :postal_code, placeholder: '0000-0000', class: 'form-control' %>
-      </div>
-      <div class="col-8 mt-2"></div>
-      <!--確認ボタンの例-->
-      <div class="col-2">
-      <div class="col-4 mt-2">
-        <div class="d-flex db-highlight mb-3">
-          <div class="db-highlight"><%= f.submit "保存", class: "btn btn-sm btn-success" %></div>
-        </div>
-      </div>
-    </div>
-  <% end %>
 </div>
