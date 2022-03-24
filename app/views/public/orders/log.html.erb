@@ -16,22 +16,23 @@
           <% @cart_items.each do |cart| %>
             <tr>
               <td class="text-left">
-                <% if cart_item.image.attached? %>
+                <% if cart.image.attached? %>
                 <%= image_tag cart_item.item, :image, size: "50x50" %>
                 <% else %>
                 <%= image_tag 'no_image.jpg' %>
                 <% end %>
+                <%= cart.item.name %>
               </td>
               <td class="text-right">
-                ¥<%= (cart_item.item.with_tax_price).to_s(:delimited) %>
+                ¥<%= (cart.item.with_tax_price) %>
               </td>
               <td class="text-right">
-                  <%= cart_item.item.count %>
+                  <%= cart.count %>
               </td>
               <td class="text-right">
-                ¥<%= (cart_item.item.with_tax_price * cart_item.count).to_s(:delimited) %>
+                ¥<%= (cart.item.with_tax_price) * (cart.count) %>
             </tr>
-            <% @sum += cart_item.subtotal %>
+            <% @price += cart.subtotal %>
           <% end %>
         </tbody>
       </table>
@@ -44,11 +45,11 @@
           </tr>
           <tr>
             <th class="info">商品合計</th>
-            <td class="text-right">¥<%= @sum.to_s(:delimited) %></td>
+            <td class="text-right">¥<%=  @total_price.to_s(:delimited) %></td>
           </tr>
           <tr>
             <th class="info">請求金額</th>
-            <td class="text-right">¥<%= billing(@order).to_s(:delimited) %></td><!-- 分からない  -->
+            <td class="text-right">¥<%= ( @total_price + 800 ) %></td><!-- 分からない  -->
           </tr>
       </table>
     </div>
@@ -63,21 +64,21 @@
         <tr>
           <th  class="info">お届け先</th>
           <td class="text-left">
-            <%= "#{@order.postal_code} #{@order.address} 　#{@order.name}" %>
+            <%= "#{@order.postal_code} #{@order.address} 　#{@order.receiver_name}" %>
           </td>
         </tr>
       </table>
 
       <!-- 表示とformを分けて記入 -->
       <div class ="col-xs-11">
-      <%= form_with model: @order, url: customers_orders_path, method: :post, local: true do |f| %>
+      <%= form_with model: @order, url: public_orders_path, method: :post, local: true do |f| %>
         <%= f.hidden_field :postal_code %>
         <%= f.hidden_field :address %>
-        <%= f.hidden_field :name %>
+        <%= f.hidden_field :receiver_name %>
         <%= f.hidden_field :payment_method %>
-        <%= f.hidden_field :total_price %>
-        <%= f.hidden_field :ship, value: @ship %>
-        <%= link_to "注文情報入力へ戻る", new_customers_order_path, data: {"turbolinks" => false}, class: "btn btn-info col-xs-3 back" %>
+        <%= f.hidden_field :billing_amount %>
+        <%= f.hidden_field :shipping_fee, value: @ship %>
+        <%= link_to "注文情報入力へ戻る", new_public_order_path, data: {"turbolinks" => false}, class: "btn btn-info col-xs-3 back" %>
         　　<i class="fas fa-shipping-fast fa-2x"></i>
         <%= f.submit "購入を確定する", class: "btn btn-warning center-block col-xs-5" %>
       <% end %>
