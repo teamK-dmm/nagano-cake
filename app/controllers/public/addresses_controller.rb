@@ -25,7 +25,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
-    @address = Customer.find(params[:id])
+    @address = Address.find(params[:id])
   end
 
   def update

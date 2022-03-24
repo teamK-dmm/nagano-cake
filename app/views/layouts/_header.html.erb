@@ -1,4 +1,3 @@
-
     <header>
       <div class="row justify-content-center">
       <%= link_to root_path, :style => "color: #000000;", class:"navbar-brand" do %>
@@ -11,14 +10,8 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
-
-          <div class="navbar-collapse collapse show" id="navbarNavDropdown" >
-        <ul class="navbar-nav ml-auto">
-
-
           <div class="navbar-collapse collapse" id="navbarNavDropdown" >
         <ul class="navbar-nav mr-auto justify-content-start">
-
           <% if customer_signed_in? %>
           <li><p class="logincustomer nav-link text-light">ようこそ<%= current_customer.last_name + current_customer.first_name %>さん！</p></li> <!--  文字の位置と色  -->
           <li>
@@ -53,7 +46,7 @@
                  <% end %>
                 </li>
                 <li class"nav-item">
-                 <%= link_to about_path, class: "btn btn-dark" do %>
+                 <%= link_to public_orders_path, class: "btn btn-dark" do %>
                     注文履歴一覧
                  <% end %>
                 </li>
@@ -97,7 +90,6 @@
           </div>
         </div>
       </nav>
-    </div>
-  </div>
-</header>
+    </header>
+
 
