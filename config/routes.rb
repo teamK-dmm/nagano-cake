@@ -16,10 +16,11 @@ Rails.application.routes.draw do
 
     # public
     namespace :public do
+     get "orders/thanks"=>"orders#thanks"
      resources :items, only:[:index, :show]
      resources :orders, only:[:new, :index, :show, :create]
      post "orders/log"=>"orders#log"
-     get "orders/thanks"=>"oeders#thanks"
+
     end
 
     #admin

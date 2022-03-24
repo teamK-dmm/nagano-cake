@@ -26,21 +26,21 @@ class Public::OrdersController < ApplicationController
       render :new
     end
 
-    @order.billing_amount = params[:billing_amount].to_i + @order.shipping_fee
     @cart_items = current_customer.cart_items
     @total_price = 0
     @cart_items.each do |cart_item|
     @item = Item.find_by(id: cart_item.item_id)
-    @price = (@item.price)*(cart_item.count)
+    @price = (@item.with_tax_price)*(cart_item.count)
     @total_price += @price
+    @order.billing_amount = @total_price + @order.shipping_fee
     end
   end
 
   def create
     @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
-    @order.shipping_fee = 800
 
+    @order.shipping_fee = 800
+    @order.customer_id = current_customer.id
     if @order.save
         cart_items = current_customer.cart_items
         cart_items.each do |cart|
@@ -52,7 +52,7 @@ class Public::OrdersController < ApplicationController
           @order_item.save
        end
        cart_items.destroy_all
-       redirect_to thanks_orders_path
+       redirect_to public_orders_thanks_path
     else
       @cart_items = current_customer.cart_items
       @cart_items = current_customer.cart_items
@@ -67,12 +67,11 @@ class Public::OrdersController < ApplicationController
   end
 
   def thanks
-
   end
 
   def show
     @order = Order.find(params[:id])
-
+    @order_item = @order.order_items.all
   end
 
   def index
