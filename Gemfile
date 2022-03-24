@@ -58,3 +58,5 @@ gem 'devise'
 gem 'kaminari'
 gem 'faker'
 gem 'enum_help'
+
+gem "pry-rails"
