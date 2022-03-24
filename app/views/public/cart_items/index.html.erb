@@ -27,12 +27,11 @@
                 <tr class="brown-border">
                   <td class="align-middle">
                     <!--  商品画像  -->
-                    <% if cart_item.image.attached? %>
-                    <%= image_tag cart_item.item, :image, size: "50x50" %>
+                    <% if cart_item.item.image.attached? %>
+                    <%= image_tag cart_item.item.get_image(100,100) %>
                     <% else %>
                     <%= image_tag 'no_image.jpg' %>
                     <% end %>
-                    #商品名
                     <span><%= cart_item.item.name %></span>
                   </td>
                   <!--  #商品単価(税込み)   -->
