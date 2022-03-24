@@ -1,17 +1,55 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12">
-      <section class="main-visual mt-4">
-        <div class="mv-text">
-          <h3 class=text-center>ようこそ、ながのCAKEへ！</h3><br>
-          <p class=text-center>このサイトは、ケーキ販売のECサイトになります。</p><br>
-          <p class=text-center>ゴリラでない方も商品を閲覧できますが、</p><br>
-          <p class=text-center>購入には会員登録が必要になります。</p><br>
-        <div>
-      <section>
+        <section class="main-visual mt-4">
+          <div class="mv-text">
+            <h3 class=text-center>ようこそ、ながのCAKEへ！</h3><br>
+          <div>
+        </section>
+        <div class="row justify-content-center">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <%= image_tag 'gorira-3-44', size: "500x300" %>
+                  <div class="carousel-caption d-none d-md-block">
+                <h5>私はゴリラです。</h5>
+                <p>全国のゴリラをあなたへ届けます。</p>
+              </div>
+                </div>
+                <div class="carousel-item">
+                  <%= image_tag 'sunset', size: "500x300" %>
+                  <div class="carousel-caption d-none d-md-block">
+                <h5>夕日</h5>
+                <p>うんぴょ</p>
+              </div>
+                </div>
+                <div class="carousel-item">
+                  <%= image_tag 'もつ鍋', size: "500x300" %>
+                  <div class="carousel-caption d-none d-md-block">
+                <h5>私はもつ鍋です。</h5>
+                <p>全国のもつ鍋をあなたへ届けます。</p>
+              </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+          </div>
+        </div>
     </div>
   </div>
 
+  <section class="main-visual mt-4">
   <div class="row">
     <section class="new-items col-md-12">
       <h3><strong>&ensp;&ensp;&ensp;&ensp;&ensp;新着商品</strong></h3>
@@ -32,6 +70,7 @@
       </div>
     </section>
   </div>
+  </section>
   <div class="col-md-12 text-center">
     <%= link_to "全ての商品を見る>", public_items_path %>
   </div>
