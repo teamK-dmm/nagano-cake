@@ -1,5 +1,12 @@
-<div class="container hight ">
-  <div class="row ">
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-2">
+      <%= form_with model: @genre do |f| %>
+        <h4><%= f.label :"ジャンル追加" %></h4>
+        <p><%= f.text_field :name %></p>
+        <p><%= f.submit "追加", class: "btn btn-primary" %></p>
+      <% end %>
+    </div>
 
 
 
@@ -13,14 +20,12 @@
       </ul>
     <% end %>
 
-
-
+    <div class="col-sm-9 offset-sm-1">
     <table class = "table table-hover">
       <thead>
         <tr class="active">
           <th>ジャンル</th>
           <th>状態</th>
-          <th colspan="1"></th>
         </tr>
       </thead>
       <tbody>
@@ -33,17 +38,7 @@
       </tbody>
     </table>
     <%= paginate @genres %>
-
          <!--ジャンル用form_で記載する時削除 -->
      <!--正直正しいか怪しいform_with?for?-->
-     <%= form_with model: @genre do |f| %>
-      <div class="field row ">
-        <h4><%= f.label :"ジャンル追加" %></h4>
-      </div>
-        <p><%= f.text_field :name %></p>
-       <!--ボタンの記述 -->
-        <p><%= f.submit "追加", class: "btn btn-primary" %></p>
-
-    <% end %>
-  </div>
+    </div>
 </div>

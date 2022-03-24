@@ -13,8 +13,18 @@
  *= require_tree .
  *= require_self
  */
+header, h1,h2,h3, nav {
+  font-family: 'Hachi Maru Pop', cursive;
+  color: #111111;
+}
 
-  .link {
-    text-decoration: none;
-    color: #38aef0 ;
-  }
+.carousel-caption {
+  font-family: 'Hachi Maru Pop', cursive;
+  color: #000000;
+}
+
+.card
+{
+  font-family: 'Hachi Maru Pop', cursive;
+
+}
