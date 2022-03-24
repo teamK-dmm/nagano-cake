@@ -1,6 +1,5 @@
+  <div class="container mt-5">
   <h2><%= @customer.first_name %>の詳細</h2>
-
-
   <table class="table table-hover">
     <tr class="table-info">
       <th scope="row">氏名</th>
@@ -37,8 +36,8 @@
         </td>
   </table>
 
-
   <div class="col-sm-3 my-auto">
-    <%= link_to "会員情報を編集する", edit_admin_customer_path, class: "btn btn-primary" %> #ユーザーのマイページに飛ぶ
+    <%= link_to "会員情報を編集する", edit_admin_customer_path, class: "btn btn-primary" %>
     <%= link_to "注文履歴一覧を見る", admin_customer_path, class: "btn btn-primary mt-5" %> #後でパス合わせる
   </div>
+</div>
