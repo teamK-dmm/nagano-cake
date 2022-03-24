@@ -40,7 +40,7 @@
   <td><%= order_item.count %></td>
   <td><%= ( order_item.count*order_item.item.price * 1.1).floor %></td>
    <%= form_with model: order_item do |f| %>
-  <td><%= f.select :making_status,order_items.keys.map {|k| [I18n.t("enums.order.status.#{k}"), %></td>
+  <td><%= f.select :making_status,Order_items.keys.map {|k| [I18n.t("enums.order_item.making_status.#{k}"), %></td>
   <td><%= f.submit "更新" ,class:"btn btn-primary btn-xs" %></td>
   <% end %>
 </tr>

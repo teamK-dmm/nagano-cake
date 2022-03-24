@@ -10,4 +10,7 @@ class Admin::OrdersController < ApplicationController
     # 表示出来たら消費税も掛けるようにする。
     end
   end
+  
+  
+  
 end
