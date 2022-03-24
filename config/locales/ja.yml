@@ -5,6 +5,18 @@ ja:
           credit_card: "クレジットカード"
           transfer: "銀行振込"
 
+        status:
+          waiting_deposit: "入金待ち"
+          payment_confirmation: "入金確認"
+          in_production: "作成中"
+          preparing_ship: "発送準備中"
+          shipped_items: "発送済み"
+
+        making_status:
+          before: "着手不可"
+          wait: "製作待ち"
+          make: "試作中"
+          finish: "製作完了"
 #ja: # 日本語の設定を行う
    # enums: # enumの設定を行う
       #[モデル名]:

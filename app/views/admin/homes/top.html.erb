@@ -10,9 +10,9 @@
     <% @orders.each do |order| %>
     <tr>
       <!--下に詳細ページ後で追加-->
-      <td><%= link_to order.created_at,admin_oders_item %></td>
+      <td><%= link_to order.created_at, admin_order_path(order.id) %></td>
       <td><%= order.total_amount %></td>
-      <td><%= order.status %></td>
+      <td><%= order.status_i18n %></td>
     </tr>
     <% end %>
   </table>
