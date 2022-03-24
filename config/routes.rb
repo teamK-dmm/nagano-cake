@@ -18,7 +18,6 @@ Rails.application.routes.draw do
      resources :items, only:[:index, :show]
      resources :orders, only:[:new, :index, :show, :create]
      post "orders/log"=>"orders#log"
-
     end
 
     #admin
