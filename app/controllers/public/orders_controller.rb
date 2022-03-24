@@ -38,6 +38,7 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+
     @order.shipping_fee = 800
     @order.customer_id = current_customer.id
     if @order.save
