@@ -1,8 +1,6 @@
 class Address < ApplicationRecord
-  belongs_to :customer
-
-  #郵便　住所　名前を一括で表示する
-  def address_display
-  '〒' + postal_code + ' ' + address + ' ' + name
+belongs_to :customer
+  def full_address
+    '〒' + postal_code + ' ' + address + ' ' + receiver_name
   end
 end

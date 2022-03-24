@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2022_03_19_091607) do
 
 
   create_table "addresses", force: :cascade do |t|
+    t.string "customer_id"
     t.string "receiver_name"
     t.string "address"
     t.string "postal_code"
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 2022_03_19_091607) do
     t.string "phone_number", null: false
     t.string "postal_code", null: false
     t.boolean "is_deleted", default: false, null: false
+    t.integer "customer_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -106,56 +108,31 @@ ActiveRecord::Schema.define(version: 2022_03_19_091607) do
     t.string "genre_id"
   end
 
-  create_table "oder_items", force: :cascade do |t|
-    t.string "making_status"
-    t.string "count"
-    t.string "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "oders", force: :cascade do |t|
-    t.integer "shipping_fee", default: 800, null: false
-    t.integer "payment_method"
-    t.integer "billing_amount"
-    t.integer "status"
-    t.string "address"
-    t.string "postal_code"
-    t.string "receiver_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "order_items", force: :cascade do |t|
-    t.string "making_status"
-    t.string "count"
-    t.string "price"
+    t.integer "order_id"
+    t.integer "item_id"
+    t.integer "making_status"
+    t.integer "count"
+    t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "shipping_fee", default: 800, null: false
+
     t.integer "payment_method", default: 0
     t.integer "billing_amount"
     t.integer "status", default: 0
+    t.integer "payment_method", default: 0, null: false
+    t.integer "billing_amount"
+    t.integer "status", default: 0, null: false
     t.string "address"
     t.string "postal_code"
     t.string "receiver_name"
+    t.integer "customer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
