@@ -1,4 +1,4 @@
-class GenresController < ApplicationController
+class Admin::GenresController < ApplicationController
 # before_action :authenticate_admin!
  def index
     @genres = Genre.page(params[:page]).per(8)
@@ -9,7 +9,7 @@ class GenresController < ApplicationController
    @genre = Genre.new(genre_params)
    if @genre.save
      # 条件分岐エラーの表示アプリケーション21章参考に
-     redirect_to genres_path
+     redirect_to admin_genres_path
    else
     @genres = Genre.page(params[:page]).per(8)
      render :index
@@ -23,7 +23,7 @@ class GenresController < ApplicationController
  def update
     @genre = Genre.find(params[:id])
     @genre.update(genre_params)
-    redirect_to genres_path
+    redirect_to admin_genres_path
  end
 
   private

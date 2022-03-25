@@ -7,12 +7,10 @@ Rails.application.routes.draw do
     #customer/edit
     get "customers/edit"=>"public/customers#edit", as: "customer_edit"
 
+
     #devise
     devise_for :customers,skip:[:passwords], controllers: {registrations: "public/registrations",sessions: 'public/sessions'}
     devise_for :admin,skip:[:registrations, :passwords], controllers: {sessions: "admin/sessions"}
-
-    # genre
-    resources :genres
 
     # public
     namespace :public do
@@ -24,6 +22,10 @@ Rails.application.routes.draw do
 
     #admin
     namespace :admin do
+     root to: "homes#top"
+     resources :order_items
+     resources :orders
+     resources :genres
      resources :items, only: [:index, :show, :edit, :update, :create, :new]
      resources :customers, only: [:index,:show,:edit,:update]
     end
