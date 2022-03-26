@@ -4,7 +4,7 @@
     <tbody>
       <tr>
         <th>購入者</th>
-        <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
+        <td><%= @order.customer.first_name %><%= @order.customer.last_name %></td>
       </tr>
       <tr>
         <th>注文日</th>
@@ -22,7 +22,7 @@
         <td>注文ステータス</td>
           <td>
             <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
-             <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+             <%= f.select :status,Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
              <%= f.submit '更新', class:"btn btn-info " %>
             <% end %>
           </td>
@@ -49,9 +49,9 @@
                 <td><%= (order_item.item.price * 1.1).floor %></td>
                 <td><%= order_item.count %></td>
                 <td><%= ( order_item.count*order_item.item.price * 1.1).floor %></td>
-                 <%= form_with model: order_item, url: admin_order_item_path(order_item.id) do |f| %>
-                <td><%= f.select :making_status,OrderItem.making_statuses.keys.map {|k| [I18n.t("enums.order_item.making_status.#{k}"), k]} %></td>
-                <td><%= f.submit "更新" ,class:"btn btn-primary btn-xs" %></td>
+                <%= form_with model: order_item, url: admin_order_item_path(order_item.id) do |f| %>
+                  <td><%= f.select :making_status,OrderItem.making_statuses.keys.map {|k| [I18n.t("enums.order_item.making_status.#{k}"), k]} %></td>
+                  <td><%= f.submit "更新" ,class:"btn btn-primary btn-xs" %></td>
                 <% end %>
               </tr>
             <% end %>
