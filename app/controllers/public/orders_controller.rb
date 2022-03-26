@@ -12,11 +12,11 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
     elsif params[:order][:address_option] == "1"
       @address = Address.find_by(id: params[:order][:address])
-      @order.receiver_name = @address.name
+      @order.receiver_name = @address.receiver_name
       @order.postal_code = @address.posal_code
       @order.address = @address.address
     elsif params[:order][:address_option] == "2"
-      @order.receiver_name = params[:order][:name]
+      @order.receiver_name = params[:order][:receiver_name]
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
     end

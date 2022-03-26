@@ -6,7 +6,10 @@ Rails.application.routes.draw do
 
     #customer/edit
     get "customers/edit"=>"public/customers#edit", as: "customer_edit"
-
+    
+    #search
+    get "search" => "searches#search"
+    get "search_result" => "searches#search_result"
 
     #devise
     devise_for :customers,skip:[:passwords], controllers: {registrations: "public/registrations",sessions: 'public/sessions'}
