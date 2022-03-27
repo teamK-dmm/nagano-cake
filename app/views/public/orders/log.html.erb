@@ -16,8 +16,8 @@
           <% @cart_items.each do |cart| %>
             <tr>
               <td class="text-left">
-                <% if cart.image.attached? %>
-                <%= image_tag cart_item.item, :image, size: "50x50" %>
+                <% if cart.item.image.attached? %>
+                <%= image_tag cart.item.get_image(100,100) %>
                 <% else %>
                 <%= image_tag 'no_image.jpg' %>
                 <% end %>

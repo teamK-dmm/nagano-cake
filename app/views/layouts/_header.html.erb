@@ -1,7 +1,7 @@
     <header>
       <div class="row justify-content-center">
       <%= link_to root_path, :style => "color: #000000;", class:"navbar-brand" do %>
-        <h2><%= image_tag 'gorira-3-44', size: "30x30" %><span>ながのcake</span></h2>
+        <h2><%= image_tag '01228-tmb', size: "30x30" %><span>ながのcake</span></h2>
       <% end %>
       </div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -13,7 +13,7 @@
           <div class="navbar-collapse collapse" id="navbarNavDropdown" >
         <ul class="navbar-nav mr-auto justify-content-start">
           <% if customer_signed_in? %>
-          <li><p class="logincustomer nav-link text-light">ようこそ<%= current_customer.last_name + current_customer.first_name %>さん！</p></li> <!--  文字の位置と色  -->
+          <li><p class="logincustomer nav-link text-light">ようこそ<%= current_customer.first_name + current_customer.last_name %>さん！</p></li> <!--  文字の位置と色  -->
           <li>
             <%= link_to customer_path(current_customer.id), class: "nav-link text-light" do %>
             <i class="fas fa-user"></i>マイページ
@@ -21,7 +21,7 @@
           </li>
           <li>
             <%= link_to public_items_path, class: "nav-link text-light" do %>
-            <i class="fas fa-poo"></i>商品一覧
+            <i class="fa-solid fa-cake-candles"></i>商品一覧
             <% end %>
           </li>
           <li>
@@ -46,12 +46,12 @@
                  <% end %>
                 </li>
                 <li class"nav-item">
-                 <%= link_to about_path, class: "btn btn-dark" do %>
+                 <%= link_to admin_root_path, class: "btn btn-dark" do %>
                     注文履歴一覧
-                 <% end %>
+                     <% end %>
                 </li>
                 <li class"nav-item">
-                 <%= link_to genres_path, class: "btn btn-dark" do %>
+                 <%= link_to admin_genres_path, class: "btn btn-dark" do %>
                     ジャンル一覧
                  <% end %>
                 </li>
@@ -83,10 +83,10 @@
           </li>
           <% end %>
         </ul>
-            <form class="form-inline justify-content-end">
-            <input class="form-control mr-sm-2" type="search" placeholder="検索キーワード" arial-label="検索キーワード">
-            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">検索</button>
-          </form>
+            <%= form_with url: search_path, local: true, method: :get, class: "form-inline justify-content-end" do |f| %>
+              <%= f.text_field :name, class: "form-control mr-sm-2" %>
+              <%= f.submit "検索", class: "btn btn-danger" %>
+            <% end %>
           </div>
         </div>
       </nav>

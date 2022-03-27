@@ -11,12 +11,12 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
     elsif params[:order][:address_option] == "1"
-      @address = Address.find_by(id: params[:order][:address])
-      @order.receiver_name = @address.name
-      @order.postal_code = @address.posal_code
+      @address = Address.find(params[:order][:address_id])
+      @order.receiver_name = @address.receiver_name
+      @order.postal_code = @address.postal_code
       @order.address = @address.address
     elsif params[:order][:address_option] == "2"
-      @order.receiver_name = params[:order][:name]
+      @order.receiver_name = params[:order][:receiver_name]
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
     end
@@ -38,6 +38,7 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+
     @order.shipping_fee = 800
     @order.customer_id = current_customer.id
     if @order.save
